@@ -15,11 +15,11 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         let newMemoModel = Memo(context: viewContext)
-        newMemoModel.title = "aaa"
+        newMemoModel.title = ""
         newMemoModel.hour = 0
         newMemoModel.minute = 0
         newMemoModel.second = 0
-        newMemoModel.memo = "aaa"
+        newMemoModel.memo = ""
         
         do {
             try viewContext.save()
@@ -33,7 +33,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Memo")
+        container = NSPersistentContainer(name: "MemoModel")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
