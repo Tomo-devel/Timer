@@ -30,7 +30,7 @@ struct TimerView: View {
                 }
                 
             } else {
-                HStack(spacing: 0) {
+                HStack(spacing: -15) {
                     Group {
                         Picker(selection: $hour) {
                             ForEach(0 ..< 24) { num in
