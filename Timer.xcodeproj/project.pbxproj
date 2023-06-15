@@ -14,6 +14,9 @@
 		E590B2512A3ACA8400BFD07E /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2502A3ACA8400BFD07E /* TimerTests.swift */; };
 		E590B25B2A3ACA8400BFD07E /* TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B25A2A3ACA8400BFD07E /* TimerUITests.swift */; };
 		E590B25D2A3ACA8400BFD07E /* TimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B25C2A3ACA8400BFD07E /* TimerUITestsLaunchTests.swift */; };
+		E590B26A2A3ACAB200BFD07E /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2692A3ACAB200BFD07E /* TimerModel.swift */; };
+		E590B26C2A3ACAFC00BFD07E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B26B2A3ACAFC00BFD07E /* TimerView.swift */; };
+		E590B26E2A3ACB9E00BFD07E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B26D2A3ACB9E00BFD07E /* TimerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		E590B2562A3ACA8400BFD07E /* TimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E590B25A2A3ACA8400BFD07E /* TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUITests.swift; sourceTree = "<group>"; };
 		E590B25C2A3ACA8400BFD07E /* TimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E590B2692A3ACAB200BFD07E /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		E590B26B2A3ACAFC00BFD07E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		E590B26D2A3ACB9E00BFD07E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 			children = (
 				E590B23F2A3ACA8300BFD07E /* TimerApp.swift */,
 				E590B2412A3ACA8300BFD07E /* ContentView.swift */,
+				E590B26B2A3ACAFC00BFD07E /* TimerView.swift */,
+				E590B26D2A3ACB9E00BFD07E /* TimerViewModel.swift */,
+				E590B2692A3ACAB200BFD07E /* TimerModel.swift */,
 				E590B2432A3ACA8400BFD07E /* Assets.xcassets */,
 				E590B2452A3ACA8400BFD07E /* Preview Content */,
 			);
@@ -257,7 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E590B26E2A3ACB9E00BFD07E /* TimerViewModel.swift in Sources */,
+				E590B26A2A3ACAB200BFD07E /* TimerModel.swift in Sources */,
 				E590B2422A3ACA8300BFD07E /* ContentView.swift in Sources */,
+				E590B26C2A3ACAFC00BFD07E /* TimerView.swift in Sources */,
 				E590B2402A3ACA8300BFD07E /* TimerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +437,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,6 +467,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
