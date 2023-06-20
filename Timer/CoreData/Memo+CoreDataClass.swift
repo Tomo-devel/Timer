@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Memo)
-public class Memo: NSManagedObject {
+@objc(Record)
+public class Record: NSManagedObject {
 
 }

@@ -14,15 +14,17 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        let newMemoModel = Memo(context: viewContext)
-        newMemoModel.title = ""
-        newMemoModel.hour = 0
-        newMemoModel.minute = 0
-        newMemoModel.second = 0
-        newMemoModel.memo = ""
+        let newRecordModel = Record(context: viewContext)
+    
+        newRecordModel.title = ""
+        newRecordModel.hour = 0
+        newRecordModel.minute = 0
+        newRecordModel.second = 0
+        newRecordModel.memo = ""
         
         do {
             try viewContext.save()
+            
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -33,7 +35,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "MemoModel")
+        container = NSPersistentContainer(name: "RecordModel")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

@@ -15,6 +15,7 @@ struct TimerApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistence.container.viewContext)
+                .preferredColorScheme(.dark)
         }
     }
 }

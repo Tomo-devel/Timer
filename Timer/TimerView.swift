@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimerView: View {
-    @StateObject var model: TimerViewModel = .init()
+    @StateObject var model: TimerModel = .init()
     @State private var screenSwitching: Bool = false
     @State private var frag: Bool = false
     @State private var notation: String = "Start"
@@ -22,45 +22,18 @@ struct TimerView: View {
             Spacer()
             if screenSwitching {
                 HStack {
-                    Text("\(model.hour) h")
-                    
-                    Text("\(model.minute) m")
-                    
-                    Text("\(model.second) s")
+                    Group {
+                        Text("\(model.hour) h")
+                        
+                        Text("\(model.minute10)\(model.minute) m")
+                        
+                        Text("\(model.second10)\(model.second) s")
+                    }
+                    .font(.largeTitle)
                 }
                 
             } else {
-                HStack(spacing: -15) {
-                    Group {
-                        Picker(selection: $hour) {
-                            ForEach(0 ..< 24) { num in
-                                Text("\(num)")
-                            }
-                            
-                        } label: {
-                            Text("TIME")
-                        }
-                        
-                        Picker(selection: $minute) {
-                            ForEach(0 ..< 60) { num in
-                                Text("\(num)")
-                            }
-                            
-                        } label: {
-                            Text("TIME")
-                        }
-                        
-                        Picker(selection: $second) {
-                            ForEach(0 ..< 60) { num in
-                                Text("\(num)")
-                            }
-                            
-                        } label: {
-                            Text("TIME")
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                }
+                TimerPicker(hour: $hour, minute: $minute, second: $second)
             }
             
             Spacer()
@@ -72,10 +45,21 @@ struct TimerView: View {
                     frag = false
                     
                 } label: {
-                    Text("Cancel")
+                    Circle()
+                        .fill(.blue)
+                        .frame(width: 100)
+                        .opacity(0.5)
+                        .overlay {
+                            Text("Cancel")
+                                .foregroundColor(.white)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
                 }
                 .padding()
+                .disabled(!screenSwitching)
                 
+                Spacer()
                 Button {
                     if !screenSwitching {
                         screenSwitching = true
@@ -94,14 +78,23 @@ struct TimerView: View {
                     frag.toggle()
                     
                 } label: {
-                    Text(notation)
+                    Circle()
+                        .fill(.orange)
+                        .opacity(0.3)
+                        .frame(width: 100)
+                        .overlay {
+                            Text(notation)
+                                .foregroundColor(.orange)
+                                .font(.title)
+                                .fontWeight(.heavy)
+                        }
                 }
                 .padding()
+                .disabled(hour <= 0 && minute <= 0 && second <= 0)
             }
             
             Spacer()
         }
-        .preferredColorScheme(.dark)
     }
 }
 
