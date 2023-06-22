@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: ストップウォッチの記録も残せるようにピッカーのセグメントを用意する。
 struct FolderView: View {
     @Binding var selection: Int
     @Binding var hour: Int
