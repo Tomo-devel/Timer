@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51278C32A4434E4002B44C9 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51278C22A4434E4002B44C9 /* StopWatchViewModel.swift */; };
 		E590B2402A3ACA8300BFD07E /* TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B23F2A3ACA8300BFD07E /* TimerApp.swift */; };
 		E590B2422A3ACA8300BFD07E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2412A3ACA8300BFD07E /* ContentView.swift */; };
 		E590B2442A3ACA8400BFD07E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E590B2432A3ACA8400BFD07E /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E51278C22A4434E4002B44C9 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
 		E590B23C2A3ACA8300BFD07E /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E590B23F2A3ACA8300BFD07E /* TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApp.swift; sourceTree = "<group>"; };
 		E590B2412A3ACA8300BFD07E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				E590B23F2A3ACA8300BFD07E /* TimerApp.swift */,
 				E590B2412A3ACA8300BFD07E /* ContentView.swift */,
 				E5E2D10D2A40053C00D8FE8F /* StopWatchView.swift */,
+				E51278C22A4434E4002B44C9 /* StopWatchViewModel.swift */,
 				E590B26B2A3ACAFC00BFD07E /* TimerView.swift */,
 				E590B26D2A3ACB9E00BFD07E /* TimerModel.swift */,
 				E590B2B92A3B063700BFD07E /* TimerPicker.swift */,
@@ -316,6 +319,7 @@
 				E5E2D10E2A40053C00D8FE8F /* StopWatchView.swift in Sources */,
 				E590B2792A3AEED400BFD07E /* Memo+CoreDataClass.swift in Sources */,
 				E590B2422A3ACA8300BFD07E /* ContentView.swift in Sources */,
+				E51278C32A4434E4002B44C9 /* StopWatchViewModel.swift in Sources */,
 				E590B2BA2A3B063700BFD07E /* TimerPicker.swift in Sources */,
 				E590B26C2A3ACAFC00BFD07E /* TimerView.swift in Sources */,
 				E590B2402A3ACA8300BFD07E /* TimerApp.swift in Sources */,
