@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-// TODO: Viewを整える
-// TODO: タイトルとメモ欄に文字制限
+// TODO: 順番をつける処理 DBにソート用の数字を付与
 struct RecordView: View {
     @Environment(\.managedObjectContext) private var context
     @State var hour: Int = 0
@@ -27,11 +26,15 @@ struct RecordView: View {
                 
                 TextField("作業名", text: $workingTitle)
                     .padding()
-                
-                TextEditor(text: $memo)
-                    .border(.white)
-                    .frame(height: 200)
+                    .border(.cyan, width: 3)
+                    .opacity(0.6)
+                    .cornerRadius(6)
                     .padding()
+                    
+//                TextEditor(text: $memo)
+//                    .border(.white)
+//                    .frame(height: 200)
+//                    .padding()
             }
             .ignoresSafeArea(.keyboard, edges: .all)
             .toolbar {
@@ -59,7 +62,6 @@ struct RecordView: View {
     }
     
     private func saveData() {
-        // ここは後で入力できるようにする
         let newRecord = Record(context: context)
         newRecord.title =  workingTitle
         newRecord.hour = Int16(hour)
@@ -75,6 +77,7 @@ struct RecordView: View {
         }
     }
 }
+
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {

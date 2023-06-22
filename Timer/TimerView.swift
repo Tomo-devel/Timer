@@ -12,9 +12,9 @@ struct TimerView: View {
     @State private var screenSwitching: Bool = false
     @State private var frag: Bool = false
     @State private var notation: String = "Start"
-    @State private var hour: Int = 0
-    @State private var minute: Int = 0
-    @State private var second: Int = 0
+    @Binding var hour: Int
+    @Binding var minute: Int
+    @Binding var second: Int
     
     var body: some View {
         
@@ -100,6 +100,8 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+        TimerView(hour: .constant(0),
+                  minute: .constant(0),
+                  second: .constant(0))
     }
 }

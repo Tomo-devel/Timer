@@ -41,7 +41,7 @@ class TimerModel: ObservableObject {
             self.second = second
         }
         
-        timer?.invalidate()
+        stop()
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.second > 0 {

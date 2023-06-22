@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selection: Int = 2
+    @State var hour: Int = 0
+    @State var minute: Int = 0
+    @State var second: Int = 0
     @State var isShowRecordView: Bool = false
-    
+
     var body: some View {
         
         NavigationStack {
@@ -18,20 +21,28 @@ struct ContentView: View {
                 StopWatchView()
                     .tabItem {
                         Label("StopWatch", systemImage: "stopwatch")
+                            .foregroundColor(.cyan)
                     }
                     .tag(1)
                 
-                TimerView()
+                TimerView(hour: $hour,
+                          minute: $minute,
+                          second: $second)
                     .tabItem {
                         Label("Timer", systemImage: "timer")
+                            .foregroundColor(.cyan)
                     }
                     .tag(2)
                 
-                FolderView(selection: $selection)
-                    .tabItem {
-                        Label("フォルダー", systemImage: "folder")
-                    }
-                    .tag(3)
+                FolderView(selection: $selection,
+                           hour: $hour,
+                           minute: $minute,
+                           second: $second)
+                .tabItem {
+                    Label("フォルダー", systemImage: "folder")
+                        .foregroundColor(.cyan)
+                }
+                .tag(3)
             }
             .toolbar {
                 Button {

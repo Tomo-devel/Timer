@@ -22,7 +22,7 @@ struct TimerPicker: View {
                     }
                     
                 } label: {
-                    Text("TIME")
+                    Text("HOUR")
                 }
                 
                 Picker(selection: $minute) {
@@ -31,7 +31,7 @@ struct TimerPicker: View {
                     }
                     
                 } label: {
-                    Text("TIME")
+                    Text("MINUTE")
                 }
                 
                 Picker(selection: $second) {
@@ -40,7 +40,7 @@ struct TimerPicker: View {
                     }
                     
                 } label: {
-                    Text("TIME")
+                    Text("SECOND")
                 }
             }
             .pickerStyle(WheelPickerStyle())

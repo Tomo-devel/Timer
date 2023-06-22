@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-// カード型のにするかリストにするか
-// TODO: Coredataから取得した文字を表示するところを整える
-// TODO: ソート機能
 struct FolderView: View {
     @Binding var selection: Int
+    @Binding var hour: Int
+    @Binding var minute: Int
+    @Binding var second: Int
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Record.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Record.title,
-                                           ascending: false)],
+                                           ascending: true)],
         animation: .default
     )
     private var records: FetchedResults<Record>
@@ -25,44 +25,35 @@ struct FolderView: View {
         
         List {
             ForEach(records) { record in
-                ZStack {
-                    Card()
+                Button {
+                    hour = Int(record.hour)
+                    minute = Int(record.minute)
+                    second = Int(record.second)
+                    selection = 2
                     
-                    HStack {
-                        VStack(alignment: .leading) {
-                            
-                            Text(record.title ?? "")
-                                .padding([.top, .horizontal])
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .underline()
-                            
-                            HStack {
-                                Text("\(record.hour)h")
-                                Text("\(record.minute)m")
-                                Text("\(record.second)s")
-                            }
-                            .padding([.top, .leading])
-                            .font(.title)
-                            .fontWeight(.heavy)
-                            
-                            Text(record.memo ?? "")
-                                .font(.title3)
-                                .padding(.horizontal)
-                            
-                            
-                        }
-                        .padding()
+                } label: {
+                    HStack() {
+                        Text(record.title ?? "読み込む中")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
                         
                         Spacer()
+                        HStack {
+                            Text("\(record.hour)h")
+                            Text("\(record.minute)m")
+                            Text("\(record.second)s")
+                        }
+                        .font(.title3)
+                        .fontWeight(.heavy)
+                        .foregroundColor(.cyan)
                     }
+                    .padding()
                 }
             }
             .onDelete(perform: deleteData)
-            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
-        
     }
     
     private func deleteData(offsets: IndexSet) {
@@ -81,6 +72,9 @@ struct FolderView: View {
 
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderView(selection: .constant(0))
+        FolderView(selection: .constant(0),
+                   hour: .constant(0),
+                   minute: .constant(0),
+                   second: .constant(0))
     }
 }
