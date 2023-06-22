@@ -52,6 +52,7 @@ struct FolderView: View {
                 }
             }
             .onDelete(perform: deleteData)
+            .listRowSeparatorTint(.gray)
         }
         .listStyle(.plain)
     }
