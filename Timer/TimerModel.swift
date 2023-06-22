@@ -70,22 +70,6 @@ class TimerModel: ObservableObject {
             } else {
                 self.timer?.invalidate()
             }
-            
-//            if self.second > 0 {
-//                self.second -= 1
-//
-//            } else if self.minute > 0 {
-//                self.second = 59
-//                self.minute -= 1
-//
-//            } else if self.hour > 0 {
-//                self.second = 59
-//                self.minute = 59
-//                self.hour -= 1
-//
-//            } else {
-//                self.timer?.invalidate()
-//            }
         }
     }
     
