@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// カード型のにするかリストにするか
 // TODO: Coredataから取得した文字を表示するところを整える
 // TODO: ソート機能
 struct FolderView: View {
@@ -24,24 +25,44 @@ struct FolderView: View {
         
         List {
             ForEach(records) { record in
-                Card()
-                    .overlay {
+                ZStack {
+                    Card()
+                    
+                    HStack {
                         VStack(alignment: .leading) {
+                            
                             Text(record.title ?? "")
+                                .padding([.top, .horizontal])
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .underline()
                             
                             HStack {
                                 Text("\(record.hour)h")
                                 Text("\(record.minute)m")
                                 Text("\(record.second)s")
                             }
+                            .padding([.top, .leading])
+                            .font(.title)
+                            .fontWeight(.heavy)
+                            
+                            Text(record.memo ?? "")
+                                .font(.title3)
+                                .padding(.horizontal)
+                            
+                            
                         }
+                        .padding()
+                        
+                        Spacer()
                     }
+                }
             }
             .onDelete(perform: deleteData)
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
-       
+        
     }
     
     private func deleteData(offsets: IndexSet) {

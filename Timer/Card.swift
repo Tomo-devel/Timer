@@ -12,10 +12,10 @@ struct Card: View {
         
         Color.cyan
             .cornerRadius(16)
-            .padding()
             .aspectRatio(2, contentMode: .fill)
             .opacity(0.7)
             .shadow(color: .gray, radius: 3, x: 3, y: 5)
+            .padding()
     }
 }
 
