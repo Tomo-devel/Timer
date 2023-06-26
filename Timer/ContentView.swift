@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var model: TimerManager = .init()
     @State var selection: Int = 2
     @State var hour: Int = 0
     @State var minute: Int = 0
@@ -18,14 +19,15 @@ struct ContentView: View {
         
         NavigationStack {
             TabView(selection: $selection) {
-                StopWatchView()
+                StopWatchView(model: model)
                     .tabItem {
                         Label("StopWatch", systemImage: "stopwatch")
                             .foregroundColor(.cyan)
                     }
                     .tag(1)
                 
-                TimerView(hour: $hour,
+                TimerView(model: model,
+                          hour: $hour,
                           minute: $minute,
                           second: $second)
                     .tabItem {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimerView: View {
-    @StateObject var model: TimerModel = .init()
+    @ObservedObject var model: TimerManager
     @State private var screenSwitching: Bool = false
     @State private var frag: Bool = false
     @State private var notation: String = "Start"
@@ -23,17 +23,21 @@ struct TimerView: View {
             if screenSwitching {
                 HStack {
                     Group {
+//                        Text(model.samleString)
                         Text("\(model.hour) h")
-                        
+
                         Text("\(model.minute10)\(model.minute) m")
-                        
+
                         Text("\(model.second10)\(model.second) s")
                     }
-                    .font(.largeTitle)
+                    .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 50,
+                                                                weight: .light)))
                 }
                 
             } else {
-                TimerPicker(hour: $hour, minute: $minute, second: $second)
+                TimerPicker(hour: $hour,
+                            minute: $minute,
+                            second: $second)
             }
             
             Spacer()
@@ -63,7 +67,10 @@ struct TimerView: View {
                 Button {
                     if !screenSwitching {
                         screenSwitching = true
-                        model.start(hour: hour, minute: minute, second: second)
+//                        model.sample(hour: hour, minute: minute, second: second)
+                        model.startTimer(hour: hour,
+                                         minute: minute,
+                                         second: second)
                         notation = "Stop"
                         
                     } else if frag {
@@ -71,7 +78,8 @@ struct TimerView: View {
                         notation = "Start"
                         
                     } else {
-                        model.start(hour: hour, minute: minute, second: second)
+//                        model.sample(hour: hour, minute: minute, second: second)
+                        model.startTimer(hour: hour, minute: minute, second: second)
                         notation = "Stop"
                     }
                     
@@ -100,7 +108,8 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(hour: .constant(0),
+        TimerView(model: TimerManager(),
+                  hour: .constant(0),
                   minute: .constant(0),
                   second: .constant(0))
     }

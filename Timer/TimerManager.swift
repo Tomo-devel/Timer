@@ -6,18 +6,40 @@
 //
 
 import Foundation
+import SwiftUI
 
-class TimerModel: ObservableObject {
-    @Published var timer: Timer?
+// TODO: Timerの処理を直す
+class TimerManager: ObservableObject {
+    private var timer: Timer?
     @Published var hour: Int = 0
     @Published var minute10: Int = 0
     @Published var minute: Int = 0
     @Published var second10: Int = 0
     @Published var second: Int = 0
+    @Published var samleString = ""
+    @Published var stopwatch: TimeInterval = 0.0
     var count: [Int] = []
     
+    // FIXME: Timer -
+    func sample(hour: Int, minute: Int, second: Int) {
+        let hourw = hour * 60
+        let minutew = (minute + hourw) * 60
+        var secondw = second + minutew
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            let time: TimeInterval = TimeInterval(secondw)
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .abbreviated
+            formatter.includesTimeRemainingPhrase = true
+            formatter.allowedUnits = [.hour, .minute, .second]
+            self.samleString = formatter.string(from: time) ?? ""
+            secondw -= 1
+//            print(formatter.string(from: time) ?? "")
+        }
+        
+    }
     
-    func start(hour: Int, minute: Int, second: Int) {
+    
+    func startTimer(hour: Int, minute: Int, second: Int) {
         count.removeAll()
         count.append(second)
         count.append(minute)
@@ -73,14 +95,23 @@ class TimerModel: ObservableObject {
         }
     }
     
-    func stop() {
-        timer?.invalidate()
-    }
-    
     func cancel() {
         timer?.invalidate()
         second = count[0]
         minute = count[1]
         hour = count[2]
     }
+    
+    func stop() {
+        timer?.invalidate()
+    }
+    
+    // FIXME: StopWatch -
+    func startStopWatch() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { watch in
+            self.stopwatch += 0.01
+        }
+    }
 }
+
+

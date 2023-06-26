@@ -8,13 +8,35 @@
 import SwiftUI
 
 struct StopWatchView: View {
+    @ObservedObject var model: TimerManager
+    @State private var formatter = TimerFormatter()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            Text(NSNumber(value: model.stopwatch), formatter: formatter)
+                .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 50, weight: .light)))
+
+            Button {
+                model.startStopWatch()
+                
+            } label: {
+                Text("samle")
+            }
+            .padding()
+            
+            Button {
+                model.stop()
+                
+            } label: {
+                Text("stop")
+            }
+        }
     }
 }
 
 struct StopWatchView_Previews: PreviewProvider {
     static var previews: some View {
-        StopWatchView()
+        StopWatchView(model: TimerManager())
     }
 }
