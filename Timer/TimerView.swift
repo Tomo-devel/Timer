@@ -19,7 +19,6 @@ struct TimerView: View {
     var body: some View {
         
         VStack {
-            Spacer()
             if screenSwitching {
                 HStack {
                     Group {
@@ -40,7 +39,6 @@ struct TimerView: View {
                             second: $second)
             }
             
-            Spacer()
             HStack {
                 Button {
                     model.cancel()
@@ -50,7 +48,7 @@ struct TimerView: View {
                     
                 } label: {
                     Circle()
-                        .fill(.blue)
+                        .fill(.cyan)
                         .frame(width: 100)
                         .opacity(0.5)
                         .overlay {

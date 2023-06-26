@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: selectionによってツールバーが変更できるか確かめる
 struct ContentView: View {
     @StateObject var model: TimerManager = .init()
     @State var selection: Int = 2
