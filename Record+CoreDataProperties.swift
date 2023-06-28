@@ -1,8 +1,8 @@
 //
-//  Memo+CoreDataProperties.swift
+//  Record+CoreDataProperties.swift
 //  Timer
 //
-//  Created by 井上智輝 on 2023-06-15.
+//  Created by 井上智輝 on 2023-06-26.
 //
 //
 
@@ -17,13 +17,12 @@ extension Record {
     }
 
     @NSManaged public var title: String?
-    @NSManaged public var hour: Int16
-    @NSManaged public var minute: Int16
-    @NSManaged public var second: Int16
-    @NSManaged public var memo: String?
+    @NSManaged public var laptime: Data?
+    @NSManaged public var time: Double
+    @NSManaged public var date: Date?
 
 }
 
 extension Record : Identifiable {
-    
+
 }

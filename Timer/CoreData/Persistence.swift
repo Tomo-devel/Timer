@@ -14,13 +14,19 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        let newFolderModel = Folder(context: viewContext)
         let newRecordModel = Record(context: viewContext)
     
+        newFolderModel.title = ""
+        newFolderModel.hour = 0
+        newFolderModel.minute = 0
+        newFolderModel.second = 0
+        newFolderModel.memo = ""
+        
         newRecordModel.title = ""
-        newRecordModel.hour = 0
-        newRecordModel.minute = 0
-        newRecordModel.second = 0
-        newRecordModel.memo = ""
+        newRecordModel.time = 0.0
+        newRecordModel.laptime = Data()
+        newRecordModel.date = Date()
         
         do {
             try viewContext.save()

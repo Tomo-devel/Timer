@@ -12,6 +12,8 @@ struct TimerView: View {
     @State private var screenSwitching: Bool = false
     @State private var frag: Bool = false
     @State private var notation: String = "Start"
+    @Binding var tabSelection: TabMenu
+    @Binding var isShowRecordView: Bool
     @Binding var hour: Int
     @Binding var minute: Int
     @Binding var second: Int
@@ -101,12 +103,24 @@ struct TimerView: View {
             
             Spacer()
         }
+        .toolbar {
+            if tabSelection == .timer {
+                Button {
+                    isShowRecordView.toggle()
+
+                } label: {
+                    Label("追加", systemImage: "plus")
+                }
+            }
+        }
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView(model: TimerManager(),
+                  tabSelection: .constant(.timer),
+                  isShowRecordView: .constant(false),
                   hour: .constant(0),
                   minute: .constant(0),
                   second: .constant(0))

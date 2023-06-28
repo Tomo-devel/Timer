@@ -18,7 +18,7 @@ class TimerManager: ObservableObject {
     @Published var second: Int = 0
     @Published var samleString = ""
     @Published var stopwatch: TimeInterval = 0.0
-    @Published var laptimeArray: [TimeInterval] = []
+    @Published var laptime: [TimeInterval] = []
     var count: [Int] = []
     
     // FIXME: Timer -
@@ -36,7 +36,6 @@ class TimerManager: ObservableObject {
             secondw -= 1
 //            print(formatter.string(from: time) ?? "")
         }
-        
     }
     
     
@@ -115,12 +114,13 @@ class TimerManager: ObservableObject {
     }
     
     func getLaptime() {
-        laptimeArray.append(stopwatch)
+        laptime.append(stopwatch)
     }
     
     func reseStopWatch() {
         timer?.invalidate()
         stopwatch = 0.0
+        laptime.removeAll()
     }
 }
 

@@ -7,10 +7,17 @@
 
 import SwiftUI
 
-// TODO: selectionによってツールバーが変更できるか確かめる
+enum TabMenu: CaseIterable {
+    case stopwatch
+    case timer
+    case folder
+    
+    
+}
+
 struct ContentView: View {
     @StateObject var model: TimerManager = .init()
-    @State var selection: Int = 2
+    @State var tabSelection: TabMenu = .timer
     @State var hour: Int = 0
     @State var minute: Int = 0
     @State var second: Int = 0
@@ -19,15 +26,18 @@ struct ContentView: View {
     var body: some View {
         
         NavigationStack {
-            TabView(selection: $selection) {
-                StopWatchView(model: model)
+            TabView(selection: $tabSelection) {
+                StopWatchView(model: model,
+                              tabSelection: $tabSelection)
                     .tabItem {
                         Label("StopWatch", systemImage: "stopwatch")
                             .foregroundColor(.cyan)
                     }
-                    .tag(1)
+                    .tag(TabMenu.stopwatch)
                 
                 TimerView(model: model,
+                          tabSelection: $tabSelection,
+                          isShowRecordView: $isShowRecordView,
                           hour: $hour,
                           minute: $minute,
                           second: $second)
@@ -35,9 +45,10 @@ struct ContentView: View {
                         Label("Timer", systemImage: "timer")
                             .foregroundColor(.cyan)
                     }
-                    .tag(2)
+                    .tag(TabMenu.timer)
                 
-                FolderView(selection: $selection,
+                FolderView(isShowRecordView: $isShowRecordView,
+                           tabSelection: $tabSelection,
                            hour: $hour,
                            minute: $minute,
                            second: $second)
@@ -45,20 +56,12 @@ struct ContentView: View {
                     Label("フォルダー", systemImage: "folder")
                         .foregroundColor(.cyan)
                 }
-                .tag(3)
+                .tag(TabMenu.folder)
             }
-            .toolbar {
-                Button {
-                    isShowRecordView.toggle()
-                    
-                } label: {
-                    Label("追加", systemImage: "plus")
-                }
-                .sheet(isPresented: $isShowRecordView) {
-                    NavigationStack {
-                        RecordView(isShowRecordView: $isShowRecordView)
-                    }
-                }
+        }
+        .sheet(isPresented: $isShowRecordView) {
+            NavigationStack {
+                RecordView(isShowRecordView: $isShowRecordView)
             }
         }
     }

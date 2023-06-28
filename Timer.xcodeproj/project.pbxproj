@@ -18,11 +18,13 @@
 		E590B26E2A3ACB9E00BFD07E /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B26D2A3ACB9E00BFD07E /* TimerManager.swift */; };
 		E590B2702A3AEB4500BFD07E /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B26F2A3AEB4500BFD07E /* FolderView.swift */; };
 		E590B2762A3AEE1300BFD07E /* RecordModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E590B2742A3AEE1300BFD07E /* RecordModel.xcdatamodeld */; };
-		E590B2792A3AEED400BFD07E /* Memo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2772A3AEED400BFD07E /* Memo+CoreDataClass.swift */; };
-		E590B27A2A3AEED400BFD07E /* Memo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2782A3AEED400BFD07E /* Memo+CoreDataProperties.swift */; };
 		E590B27C2A3AEF0400BFD07E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B27B2A3AEF0400BFD07E /* Persistence.swift */; };
 		E590B2BA2A3B063700BFD07E /* TimerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590B2B92A3B063700BFD07E /* TimerPicker.swift */; };
 		E5DC2B8C2A49542B00A7713D /* TimerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC2B8B2A49542B00A7713D /* TimerFormatter.swift */; };
+		E5DC2BB12A497E8000A7713D /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC2BAD2A497E8000A7713D /* Folder+CoreDataClass.swift */; };
+		E5DC2BB22A497E8000A7713D /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC2BAE2A497E8000A7713D /* Folder+CoreDataProperties.swift */; };
+		E5DC2BB32A497E8000A7713D /* Record+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC2BAF2A497E8000A7713D /* Record+CoreDataClass.swift */; };
+		E5DC2BB42A497E8000A7713D /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC2BB02A497E8000A7713D /* Record+CoreDataProperties.swift */; };
 		E5E2D10C2A40040100D8FE8F /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E2D10B2A40040100D8FE8F /* RecordView.swift */; };
 		E5E2D10E2A40053C00D8FE8F /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E2D10D2A40053C00D8FE8F /* StopWatchView.swift */; };
 		E5E2D1132A40476C00D8FE8F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E2D1122A40476C00D8FE8F /* Card.swift */; };
@@ -60,11 +62,13 @@
 		E590B26D2A3ACB9E00BFD07E /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		E590B26F2A3AEB4500BFD07E /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		E590B2752A3AEE1300BFD07E /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
-		E590B2772A3AEED400BFD07E /* Memo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E590B2782A3AEED400BFD07E /* Memo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E590B27B2A3AEF0400BFD07E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E590B2B92A3B063700BFD07E /* TimerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPicker.swift; sourceTree = "<group>"; };
 		E5DC2B8B2A49542B00A7713D /* TimerFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFormatter.swift; sourceTree = "<group>"; };
+		E5DC2BAD2A497E8000A7713D /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Folder+CoreDataClass.swift"; path = "../../Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E5DC2BAE2A497E8000A7713D /* Folder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Folder+CoreDataProperties.swift"; path = "../../Folder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E5DC2BAF2A497E8000A7713D /* Record+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Record+CoreDataClass.swift"; path = "../../Record+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E5DC2BB02A497E8000A7713D /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Record+CoreDataProperties.swift"; path = "../../Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E5E2D10B2A40040100D8FE8F /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		E5E2D10D2A40053C00D8FE8F /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
 		E5E2D1122A40476C00D8FE8F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -161,10 +165,12 @@
 		E590B2B82A3B042D00BFD07E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				E5DC2BAD2A497E8000A7713D /* Folder+CoreDataClass.swift */,
+				E5DC2BAE2A497E8000A7713D /* Folder+CoreDataProperties.swift */,
+				E5DC2BAF2A497E8000A7713D /* Record+CoreDataClass.swift */,
+				E5DC2BB02A497E8000A7713D /* Record+CoreDataProperties.swift */,
 				E5E2D10F2A4008F800D8FE8F /* View */,
 				E590B27B2A3AEF0400BFD07E /* Persistence.swift */,
-				E590B2772A3AEED400BFD07E /* Memo+CoreDataClass.swift */,
-				E590B2782A3AEED400BFD07E /* Memo+CoreDataProperties.swift */,
 				E590B2742A3AEE1300BFD07E /* RecordModel.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -309,16 +315,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DC2BB12A497E8000A7713D /* Folder+CoreDataClass.swift in Sources */,
+				E5DC2BB22A497E8000A7713D /* Folder+CoreDataProperties.swift in Sources */,
 				E590B27C2A3AEF0400BFD07E /* Persistence.swift in Sources */,
+				E5DC2BB32A497E8000A7713D /* Record+CoreDataClass.swift in Sources */,
+				E5DC2BB42A497E8000A7713D /* Record+CoreDataProperties.swift in Sources */,
 				E590B26E2A3ACB9E00BFD07E /* TimerManager.swift in Sources */,
-				E590B27A2A3AEED400BFD07E /* Memo+CoreDataProperties.swift in Sources */,
 				E5E2D10C2A40040100D8FE8F /* RecordView.swift in Sources */,
 				E5E2D1132A40476C00D8FE8F /* Card.swift in Sources */,
 				E590B2762A3AEE1300BFD07E /* RecordModel.xcdatamodeld in Sources */,
 				E590B2702A3AEB4500BFD07E /* FolderView.swift in Sources */,
 				E5DC2B8C2A49542B00A7713D /* TimerFormatter.swift in Sources */,
 				E5E2D10E2A40053C00D8FE8F /* StopWatchView.swift in Sources */,
-				E590B2792A3AEED400BFD07E /* Memo+CoreDataClass.swift in Sources */,
 				E590B2422A3ACA8300BFD07E /* ContentView.swift in Sources */,
 				E590B2BA2A3B063700BFD07E /* TimerPicker.swift in Sources */,
 				E590B26C2A3ACAFC00BFD07E /* TimerView.swift in Sources */,

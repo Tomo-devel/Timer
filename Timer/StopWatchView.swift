@@ -13,6 +13,7 @@ struct StopWatchView: View {
     @State private var startButton: String = "Start"
     @State private var resetButton: String = "Reset"
     @State private var isStarting: Bool = false
+    @Binding var tabSelection: TabMenu
     
     var body: some View {
         
@@ -78,17 +79,28 @@ struct StopWatchView: View {
                 .padding()
             }
             
-            List(model.laptimeArray, id: \.self) { lap in
+            List(model.laptime, id: \.self) { lap in
                 Text(NSNumber(value: lap), formatter: formatter)
             }
             
             Spacer()
+        }
+        .toolbar {
+            if tabSelection == .stopwatch {
+                Button {
+                    
+                    
+                } label: {
+                    Label("保存", systemImage: "square.and.arrow.down.fill")
+                }
+            }
         }
     }
 }
 
 struct StopWatchView_Previews: PreviewProvider {
     static var previews: some View {
-        StopWatchView(model: TimerManager())
+        StopWatchView(model: TimerManager(),
+                      tabSelection: .constant(.stopwatch))
     }
 }

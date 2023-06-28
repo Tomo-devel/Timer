@@ -8,12 +8,38 @@
 import SwiftUI
 
 // TODO: ストップウォッチの記録も残せるようにピッカーのセグメントを用意する。
+
+enum Tool: CaseIterable {
+    case stopwatch
+    case timer
+    
+    func changeJP() -> String {
+        switch self {
+        case .stopwatch:
+            return "StopWatch"
+            
+        case .timer:
+            return "Timer"
+        }
+    }
+}
+
 struct FolderView: View {
-    @Binding var selection: Int
+    @State private var pickerSelection: Tool = .timer
+    @Binding var isShowRecordView: Bool
+    @Binding var tabSelection: TabMenu
     @Binding var hour: Int
     @Binding var minute: Int
     @Binding var second: Int
     @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Folder.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Folder.title,
+                                           ascending: true)],
+        animation: .default
+    )
+    private var folders: FetchedResults<Folder>
+
     @FetchRequest(
         entity: Record.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Record.title,
@@ -22,45 +48,82 @@ struct FolderView: View {
     )
     private var records: FetchedResults<Record>
     
+    
     var body: some View {
         
-        List {
-            ForEach(records) { record in
-                Button {
-                    hour = Int(record.hour)
-                    minute = Int(record.minute)
-                    second = Int(record.second)
-                    selection = 2
-                    
-                } label: {
-                    HStack() {
-                        Text(record.title ?? "読み込む中")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        HStack {
-                            Text("\(record.hour)h")
-                            Text("\(record.minute)m")
-                            Text("\(record.second)s")
-                        }
-                        .font(.title3)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.cyan)
+        VStack {
+            if pickerSelection == .stopwatch {
+                List {
+                    ForEach(records) { record in
+                        Text(record.title ?? "読み込み中")
                     }
-                    .padding()
+                }
+                
+            } else {
+                List {
+                    ForEach(folders) { folder in
+                        Button {
+                            hour = Int(folder.hour)
+                            minute = Int(folder.minute)
+                            second = Int(folder.second)
+                            tabSelection = .timer
+                            
+                        } label: {
+                            HStack() {
+                                Text(folder.title ?? "読み込む中")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                HStack {
+                                    Text("\(folder.hour)h")
+                                    Text("\(folder.minute)m")
+                                    Text("\(folder.second)s")
+                                }
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.cyan)
+                            }
+                            .padding()
+                        }
+                    }
+                    .onDelete(perform: deleteData)
+                    .listRowSeparatorTint(.gray)
+                }
+                .listStyle(.plain)
+            }
+        }
+        .toolbar {
+            if tabSelection == .folder {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowRecordView.toggle()
+                        
+                    } label: {
+                        Label("追加", systemImage: "plus")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Picker(selection: $pickerSelection) {
+                        ForEach(Tool.allCases, id: \.self) { tool in
+                            Text(tool.changeJP())
+                                .tag(tool)
+                        }
+                        
+                    } label: {
+                        Text("change")
+                    }
+                    .pickerStyle(.segmented)
                 }
             }
-            .onDelete(perform: deleteData)
-            .listRowSeparatorTint(.gray)
         }
-        .listStyle(.plain)
     }
     
     private func deleteData(offsets: IndexSet) {
         for index in offsets {
-            context.delete(records[index])
+            context.delete(folders[index])
         }
         
         do {
@@ -74,7 +137,8 @@ struct FolderView: View {
 
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderView(selection: .constant(0),
+        FolderView(isShowRecordView: .constant(false),
+                   tabSelection: .constant(.folder),
                    hour: .constant(0),
                    minute: .constant(0),
                    second: .constant(0))
