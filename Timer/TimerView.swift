@@ -11,7 +11,7 @@ struct TimerView: View {
     @ObservedObject var model: TimerManager
     @State private var screenSwitching: Bool = false
     @State private var frag: Bool = false
-    @State private var notation: String = "Start"
+    @State private var startButton: String = "Start"
     @Binding var tabSelection: TabMenu
     @Binding var isShowRecordView: Bool
     @Binding var hour: Int
@@ -23,16 +23,9 @@ struct TimerView: View {
         VStack {
             if screenSwitching {
                 HStack {
-                    Group {
-//                        Text(model.samleString)
-                        Text("\(model.hour) h")
-
-                        Text("\(model.minute10)\(model.minute) m")
-
-                        Text("\(model.second10)\(model.second) s")
-                    }
-                    .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 50,
-                                                                weight: .light)))
+                    Text(model.timer)
+                        .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 50,
+                                                                    weight: .light)))
                 }
                 
             } else {
@@ -43,9 +36,9 @@ struct TimerView: View {
             
             HStack {
                 Button {
-                    model.cancel()
+                    model.stop()
                     screenSwitching = false
-                    notation = "Start"
+                    startButton = "Start"
                     frag = false
                     
                 } label: {
@@ -66,21 +59,23 @@ struct TimerView: View {
                 Spacer()
                 Button {
                     if !screenSwitching {
-                        screenSwitching = true
-//                        model.sample(hour: hour, minute: minute, second: second)
                         model.startTimer(hour: hour,
-                                         minute: minute,
-                                         second: second)
-                        notation = "Stop"
+                                     minute: minute,
+                                     second: second, screenSwitching: screenSwitching)
+                        
+                        screenSwitching = true
+                        startButton = "Stop"
                         
                     } else if frag {
                         model.stop()
-                        notation = "Start"
+                        startButton = "Start"
                         
                     } else {
-//                        model.sample(hour: hour, minute: minute, second: second)
-                        model.startTimer(hour: hour, minute: minute, second: second)
-                        notation = "Stop"
+                        model.startTimer(hour: hour,
+                                     minute: minute,
+                                     second: second, screenSwitching: screenSwitching)
+                        
+                        startButton = "Stop"
                     }
                     
                     frag.toggle()
@@ -91,7 +86,7 @@ struct TimerView: View {
                         .opacity(0.3)
                         .frame(width: 100)
                         .overlay {
-                            Text(notation)
+                            Text(startButton)
                                 .foregroundColor(.orange)
                                 .font(.title)
                                 .fontWeight(.heavy)
@@ -107,7 +102,7 @@ struct TimerView: View {
             if tabSelection == .timer {
                 Button {
                     isShowRecordView.toggle()
-
+                    
                 } label: {
                     Label("追加", systemImage: "plus")
                 }

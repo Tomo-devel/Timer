@@ -8,107 +8,45 @@
 import Foundation
 import SwiftUI
 
-// TODO: Timerの処理を直す
 class TimerManager: ObservableObject {
-    private var timer: Timer?
-    @Published var hour: Int = 0
-    @Published var minute10: Int = 0
-    @Published var minute: Int = 0
-    @Published var second10: Int = 0
-    @Published var second: Int = 0
-    @Published var samleString = ""
+    private var timerclass: Timer?
+    private var total = 0
+    @Published var timer = "0:00:00"
     @Published var stopwatch: TimeInterval = 0.0
     @Published var laptime: [TimeInterval] = []
-    var count: [Int] = []
+    
     
     // FIXME: Timer -
-    func sample(hour: Int, minute: Int, second: Int) {
-        let hourw = hour * 60
-        let minutew = (minute + hourw) * 60
-        var secondw = second + minutew
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            let time: TimeInterval = TimeInterval(secondw)
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .abbreviated
-            formatter.includesTimeRemainingPhrase = true
-            formatter.allowedUnits = [.hour, .minute, .second]
-            self.samleString = formatter.string(from: time) ?? ""
-            secondw -= 1
-//            print(formatter.string(from: time) ?? "")
-        }
-    }
-    
-    
-    func startTimer(hour: Int, minute: Int, second: Int) {
-        count.removeAll()
-        count.append(second)
-        count.append(minute)
-        count.append(hour)
-        
-        self.hour = hour
-        
-        if minute >= 10 {
-            self.minute10 = Int(String(minute).prefix(1)) ?? 0
-            self.minute = Int(String(minute).suffix(1)) ?? 0
-        } else {
-            self.minute10 = 0
-            self.minute = minute
-        }
-        
-        if second >= 10 {
-            self.second10 = Int(String(second).prefix(1)) ?? 0
-            self.second = Int(String(second).suffix(1)) ?? 0
-        } else {
-            self.second10 = 0
-            self.second = second
-        }
-        
+    func startTimer(hour: Int, minute: Int, second: Int, screenSwitching: Bool) {
         stop()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if self.second > 0 {
-                self.second -= 1
-                
-            } else if self.second10 > 0 {
-                self.second10 -= 1
-                self.second = 9
-                
-            } else if minute > 0 && self.minute > 0 {
-                self.minute -= 1
-                self.second = 9
-                self.second10 = 5
-                
-            } else if self.minute10 > 0 {
-                self.minute10 -= 1
-                self.minute = 9
-                
-            } else if hour > 0 {
-                self.hour -= 1
-                self.minute = 9
-                self.minute10 = 5
-                self.second = 9
-                self.second10 = 5
-                
-            } else {
-                self.timer?.invalidate()
-            }
+        if !screenSwitching {
+            total = second + ((minute + (hour * 60)) * 60)
         }
-    }
-    
-    func cancel() {
-        timer?.invalidate()
-        second = count[0]
-        minute = count[1]
-        hour = count[2]
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        self.timer = formatter.string(from: TimeInterval(self.total)) ?? ""
+        
+        timerclass = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if self.total <= 0 {
+                // TODO: 音を鳴らす処理
+                return
+            }
+            
+            self.total -= 1
+            self.timer = formatter.string(from: TimeInterval(self.total)) ?? ""
+        }
     }
     
     func stop() {
-        timer?.invalidate()
+        timerclass?.invalidate()
     }
     
     // FIXME: StopWatch -
     func startStopWatch() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
+        timerclass = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
             self.stopwatch += 0.01
         }
     }
@@ -117,8 +55,8 @@ class TimerManager: ObservableObject {
         laptime.append(stopwatch)
     }
     
-    func reseStopWatch() {
-        timer?.invalidate()
+    func resetStopWatch() {
+        timerclass?.invalidate()
         stopwatch = 0.0
         laptime.removeAll()
     }

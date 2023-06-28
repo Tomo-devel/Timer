@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StopWatchView: View {
     @ObservedObject var model: TimerManager
-    @State private var formatter = TimerFormatter()
+    @State private var formatter = StopWatchFormatter()
     @State private var startButton: String = "Start"
     @State private var resetButton: String = "Reset"
     @State private var isStarting: Bool = false
@@ -35,7 +35,7 @@ struct StopWatchView: View {
                             
                         } else {
 
-                            model.reseStopWatch()
+                            model.resetStopWatch()
                         }
                         
                     } label: {
@@ -66,7 +66,6 @@ struct StopWatchView: View {
                             resetButton = "Lap"
                             model.startStopWatch()
                             isStarting = true
-                            
                         }
                        
                     } label: {
@@ -88,7 +87,7 @@ struct StopWatchView: View {
         .toolbar {
             if tabSelection == .stopwatch {
                 Button {
-                    
+                    // TODO: stopwatchの記録を保存する処理
                     
                 } label: {
                     Label("保存", systemImage: "square.and.arrow.down.fill")

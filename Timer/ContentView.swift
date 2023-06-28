@@ -11,8 +11,6 @@ enum TabMenu: CaseIterable {
     case stopwatch
     case timer
     case folder
-    
-    
 }
 
 struct ContentView: View {
