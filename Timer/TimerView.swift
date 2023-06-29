@@ -98,6 +98,27 @@ struct TimerView: View {
             
             Spacer()
         }
+        .alert("Time is money", isPresented: $model.isShowAlert) {
+            Button {
+                model.isShowAlert = false
+                model.startTimer(hour: hour,
+                                 minute: minute,
+                                 second: second,
+                                 screenSwitching: false)
+                
+            } label: {
+                Text("もう１度")
+            }
+            
+            Button {
+                screenSwitching = false
+                startButton = "Start"
+                model.stop()
+                
+            } label: {
+                Text("停止")
+            }
+        }
         .toolbar {
             if tabSelection == .timer {
                 Button {

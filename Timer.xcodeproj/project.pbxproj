@@ -127,7 +127,6 @@
 				E590B23F2A3ACA8300BFD07E /* TimerApp.swift */,
 				E590B2412A3ACA8300BFD07E /* ContentView.swift */,
 				E5E2D10D2A40053C00D8FE8F /* StopWatchView.swift */,
-				E5D3DB9F2A4D441A002F87AF /* SoundPlayer.swift */,
 				E590B26B2A3ACAFC00BFD07E /* TimerView.swift */,
 				E590B26D2A3ACB9E00BFD07E /* TimerManager.swift */,
 				E5DC2B8B2A49542B00A7713D /* Formatter.swift */,
@@ -135,6 +134,7 @@
 				E5E2D1122A40476C00D8FE8F /* Card.swift */,
 				E590B2B82A3B042D00BFD07E /* CoreData */,
 				E590B2432A3ACA8400BFD07E /* Assets.xcassets */,
+				E5D3DB9F2A4D441A002F87AF /* SoundPlayer.swift */,
 				E590B2452A3ACA8400BFD07E /* Preview Content */,
 			);
 			path = Timer;

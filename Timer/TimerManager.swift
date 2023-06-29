@@ -16,6 +16,7 @@ class TimerManager: ObservableObject {
     @Published var timer = "0:00:00"
     @Published var stopwatch: TimeInterval = 0.0
     @Published var laptime: [TimeInterval] = []
+    @Published var isShowAlert: Bool = false
     
     
     // FIXME: Timer -
@@ -33,6 +34,7 @@ class TimerManager: ObservableObject {
         
         timerclass = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.total <= 0 {
+                self.isShowAlert = true
                 AudioServicesPlaySystemSound(SystemSoundID(1427))
                 return
             }

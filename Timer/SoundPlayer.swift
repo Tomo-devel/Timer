@@ -8,6 +8,7 @@
 import SwiftUI
 import AudioToolbox
 
+// FIXME: システムサウンド確認用のView
 struct SampleView: View {
     var body: some View {
         
@@ -24,3 +25,8 @@ struct SampleView: View {
     }
 }
 
+struct SampleView_Previews: PreviewProvider {
+    static var previews: some View {
+        SampleView()
+    }
+}
