@@ -13,9 +13,10 @@ struct TimerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistence.container.viewContext)
-                .preferredColorScheme(.dark)
+                        ContentView()
+                            .environment(\.managedObjectContext, persistence.container.viewContext)
+                            .preferredColorScheme(.dark)
+//            SampleView()
         }
     }
 }

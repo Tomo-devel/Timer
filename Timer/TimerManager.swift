@@ -7,7 +7,9 @@
 
 import Foundation
 import SwiftUI
+import AudioToolbox
 
+// TODO: 音を選べるようにするか決める
 class TimerManager: ObservableObject {
     private var timerclass: Timer?
     private var total = 0
@@ -31,7 +33,7 @@ class TimerManager: ObservableObject {
         
         timerclass = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.total <= 0 {
-                // TODO: 音を鳴らす処理
+                AudioServicesPlaySystemSound(SystemSoundID(1427))
                 return
             }
             
