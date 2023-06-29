@@ -49,6 +49,8 @@ class TimerManager: ObservableObject {
         timerclass = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
             self.stopwatch += 0.01
         }
+        
+        RunLoop.current.add(timerclass!, forMode: .common)
     }
     
     func getLaptime() {

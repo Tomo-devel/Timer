@@ -34,7 +34,6 @@ struct StopWatchView: View {
                             model.getLaptime()
                             
                         } else {
-
                             model.resetStopWatch()
                         }
                         
@@ -80,6 +79,7 @@ struct StopWatchView: View {
             
             List(model.laptime, id: \.self) { lap in
                 Text(NSNumber(value: lap), formatter: formatter)
+                    .padding(.horizontal)
             }
             
             Spacer()
