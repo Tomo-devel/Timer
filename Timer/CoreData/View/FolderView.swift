@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// TODO: ストップウォッチの記録も残せるようにピッカーのセグメントを用意する。
-
 enum Tool: CaseIterable {
     case stopwatch
     case timer
@@ -57,24 +55,31 @@ struct FolderView: View {
             if pickerSelection == .stopwatch {
                 List {
                     ForEach(records) { record in
-                        VStack(alignment: .leading) {
-                            Text(record.date?.description.prefix(10) ?? "読み込み中")
-                                .font(.callout)
-                                .padding(.bottom, 5)
+                        NavigationLink {
+                            LapView(title: record.title ?? "読み込み中",
+                                    date: String(record.date?.description.prefix(10) ?? "読み込み中"),
+                                    time: record.time,
+                                    laptime: record.laptime as! [Double])
                             
-                            HStack {
-                                Text(record.title ?? "読み込み中")
-                                    .font(.title2)
-                                    .lineLimit(1)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                Text(record.date?.description.prefix(10) ?? "読み込み中")
+                                    .font(.callout)
                                 
-                                Spacer()
-                                Text(NSNumber(value: record.time), formatter: formatter)
-                                    .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 20, weight: .light)))
-                                    .padding(.trailing)
-                                    .lineLimit(1)
+                                HStack {
+                                    Text(record.title ?? "読み込み中")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .lineLimit(1)
+                                    
+                                    Spacer()
+                                    Text(NSNumber(value: record.time), formatter: formatter)
+                                        .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 20, weight: .light)))
+                                        .padding(.trailing)
+                                        .lineLimit(1)
+                                }
                             }
                         }
-                        .padding(.bottom)
                     }
                     .onDelete(perform: deleteData)
                 }

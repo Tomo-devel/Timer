@@ -13,9 +13,10 @@ import AudioToolbox
 class TimerManager: ObservableObject {
     private var timerclass: Timer?
     private var total = 0
+    private var moment_time: Double = 0.0
     @Published var timer = "0:00:00"
-    @Published var stopwatch: TimeInterval = 0.0
-    @Published var laptime: [TimeInterval] = []
+    @Published var stopwatch: Double = 0.0
+    @Published var laptime: [Double] = []
     @Published var isShowAlert: Bool = false
     
     
@@ -58,7 +59,14 @@ class TimerManager: ObservableObject {
     }
     
     func getLaptime() {
-        laptime.append(stopwatch)
+        if laptime.isEmpty {
+            laptime.append(stopwatch)
+            
+        } else {
+            laptime.append(stopwatch - moment_time)
+        }
+        
+        moment_time = stopwatch
     }
     
     func resetStopWatch() {
