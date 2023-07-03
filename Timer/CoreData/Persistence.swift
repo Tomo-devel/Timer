@@ -25,7 +25,7 @@ struct PersistenceController {
         
         newRecordModel.title = ""
         newRecordModel.time = 0.0
-        newRecordModel.laptime = Data()
+        newRecordModel.laptime = [0.0] as NSObject
         newRecordModel.date = Date()
         
         do {

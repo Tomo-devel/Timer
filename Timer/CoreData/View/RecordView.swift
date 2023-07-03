@@ -62,12 +62,12 @@ struct RecordView: View {
     }
     
     private func saveData() {
-        let newRecord = Folder(context: context)
-        newRecord.title =  workingTitle
-        newRecord.hour = Int16(hour)
-        newRecord.minute = Int16(minute)
-        newRecord.second = Int16(second)
-        newRecord.memo = memo
+        let newFolder = Folder(context: context)
+        newFolder.title =  workingTitle
+        newFolder.hour = Int16(hour)
+        newFolder.minute = Int16(minute)
+        newFolder.second = Int16(second)
+        newFolder.memo = memo
         
         do {
             try context.save()

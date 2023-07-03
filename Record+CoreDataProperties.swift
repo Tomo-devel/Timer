@@ -17,7 +17,7 @@ extension Record {
     }
 
     @NSManaged public var title: String?
-    @NSManaged public var laptime: Data?
+    @NSManaged public var laptime: NSObject?
     @NSManaged public var time: Double
     @NSManaged public var date: Date?
 

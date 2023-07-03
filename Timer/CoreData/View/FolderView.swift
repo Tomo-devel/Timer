@@ -57,6 +57,7 @@ struct FolderView: View {
                     ForEach(records) { record in
                         Text(record.title ?? "読み込み中")
                     }
+                    .onDelete(perform: deleteData)
                 }
                 
             } else {
@@ -123,7 +124,12 @@ struct FolderView: View {
     
     private func deleteData(offsets: IndexSet) {
         for index in offsets {
-            context.delete(folders[index])
+            if pickerSelection == .stopwatch {
+                context.delete(records[index])
+                
+            } else {
+                context.delete(folders[index])
+            }
         }
         
         do {
