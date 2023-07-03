@@ -26,12 +26,14 @@ enum Tool: CaseIterable {
 
 struct FolderView: View {
     @State private var pickerSelection: Tool = .timer
+    @State private var formatter = StopWatchFormatter()
     @Binding var isShowRecordView: Bool
     @Binding var tabSelection: TabMenu
     @Binding var hour: Int
     @Binding var minute: Int
     @Binding var second: Int
     @Environment(\.managedObjectContext) private var context
+    
     @FetchRequest(
         entity: Folder.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Folder.title,
@@ -55,7 +57,24 @@ struct FolderView: View {
             if pickerSelection == .stopwatch {
                 List {
                     ForEach(records) { record in
-                        Text(record.title ?? "読み込み中")
+                        VStack(alignment: .leading) {
+                            Text(record.date?.description.prefix(10) ?? "読み込み中")
+                                .font(.callout)
+                                .padding(.bottom, 5)
+                            
+                            HStack {
+                                Text(record.title ?? "読み込み中")
+                                    .font(.title2)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                Text(NSNumber(value: record.time), formatter: formatter)
+                                    .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 20, weight: .light)))
+                                    .padding(.trailing)
+                                    .lineLimit(1)
+                            }
+                        }
+                        .padding(.bottom)
                     }
                     .onDelete(perform: deleteData)
                 }

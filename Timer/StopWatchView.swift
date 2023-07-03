@@ -94,8 +94,8 @@ struct StopWatchView: View {
                     
                 } label: {
                     Label("保存", systemImage: "square.and.arrow.down.fill")
-                        .disabled(model.stopwatch <= 0 || isStarting)
                 }
+                .disabled(model.stopwatch <= 0.0 || isStarting)
             }
         }
         .alert("保存しますか？", isPresented: $isShowTextFieldAlert) {
