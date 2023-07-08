@@ -62,6 +62,9 @@ struct ContentView: View {
                 RecordView(isShowRecordView: $isShowRecordView)
             }
         }
+        .task{
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
     }
 }
 

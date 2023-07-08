@@ -42,7 +42,7 @@ struct FolderView: View {
 
     @FetchRequest(
         entity: Record.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Record.title,
+        sortDescriptors: [NSSortDescriptor(keyPath: \Record.date,
                                            ascending: true)],
         animation: .default
     )

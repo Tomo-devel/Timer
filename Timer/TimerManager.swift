@@ -14,7 +14,6 @@ class TimerManager: ObservableObject {
     private var timerclass: Timer?
     private var total = 0
     private var moment_time: Double = 0.0
-    private var backgroundTaskID = UIBackgroundTaskIdentifier.init(rawValue: 0)
     @Published var timer = "0:00:00"
     @Published var stopwatch: Double = 0.0
     @Published var laptime: [Double] = []
@@ -34,7 +33,6 @@ class TimerManager: ObservableObject {
         formatter.allowedUnits = [.hour, .minute, .second]
         timer = formatter.string(from: TimeInterval(self.total)) ?? ""
         
-        backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
         timerclass = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.total <= 0 {
                 self.isShowAlert = true
@@ -44,19 +42,19 @@ class TimerManager: ObservableObject {
             
             self.total -= 1
             self.timer = formatter.string(from: TimeInterval(self.total)) ?? ""
+            print(self.timer)
         }
     }
     
     func stop() {
         timerclass?.invalidate()
-        UIApplication.shared.endBackgroundTask(backgroundTaskID)
     }
     
     // FIXME: StopWatch -
     func startStopWatch() {
-        backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
         timerclass = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
             self.stopwatch += 0.01
+            print(self.stopwatch)
         }
         
         RunLoop.current.add(timerclass!, forMode: .common)
@@ -77,7 +75,6 @@ class TimerManager: ObservableObject {
         timerclass?.invalidate()
         stopwatch = 0.0
         laptime.removeAll()
-        UIApplication.shared.endBackgroundTask(backgroundTaskID)
     }
 }
 
