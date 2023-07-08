@@ -59,7 +59,7 @@ struct FolderView: View {
                             LapView(title: record.title ?? "読み込み中",
                                     date: String(record.date?.description.prefix(10) ?? "読み込み中"),
                                     time: record.time,
-                                    laptime: record.laptime as! [Double])
+                                    laptime: record.laptime as? [Double] ?? [0.0])
                             
                         } label: {
                             VStack(alignment: .leading) {
@@ -106,15 +106,17 @@ struct FolderView: View {
                                     Text("\(folder.minute)m")
                                     Text("\(folder.second)s")
                                 }
-                                .font(.title3)
+                                .font(.title2)
                                 .fontWeight(.heavy)
-                                .foregroundColor(.cyan)
                             }
                             .padding()
+                            .background(.cyan)
+                            .opacity(0.7)
+                            .cornerRadius(10)
                         }
                     }
                     .onDelete(perform: deleteData)
-                    .listRowSeparatorTint(.gray)
+                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
             }
