@@ -59,7 +59,7 @@ struct FolderView: View {
                             LapView(title: record.title ?? "読み込み中",
                                     date: String(record.date?.description.prefix(10) ?? "読み込み中"),
                                     time: record.time,
-                                    laptime: record.laptime as? [Double] ?? [0.0])
+                                    laptime: (record.laptime ?? [0.0] as NSObject) as! [Double])
                             
                         } label: {
                             VStack(alignment: .leading) {
